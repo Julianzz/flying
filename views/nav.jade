@@ -1,0 +1,22 @@
+.navbar.navbar-fixed-top.navbar-inverse(role="navigation")
+  .container
+    .navbar-header
+      button.navbar-toggle(type="button",data-toggle="collapse",data-target=".navbar-collapse")
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      .navbar-brand(href="#") CodingHub
+
+    collapse.navbar-collapse
+      .nav.navbar-nav.navbar-right
+        if locals.current_user
+          li
+            a(href='/setting') 设置
+          li
+            a(href='/signout',data-method="post",rel="nofollow") 退出
+        else 
+          li
+            a(href='/signup') 注册
+          li 
+            a(href='/signin') 登录

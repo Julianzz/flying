@@ -1,0 +1,16 @@
+extend ./layout 
+  
+block content
+  include ./nav
+  #introduction  
+  #editor 
+  #console
+    #wrapper
+
+block append javascript
+  script(src='lib/socket.io.js')
+  script(src='lib/ace/ace.js')
+  script(src='javascripts/app.js')
+
+  script
+    require('initialize')

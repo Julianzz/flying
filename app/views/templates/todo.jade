@@ -1,0 +1,9 @@
+view
+  if completed
+    input.toggle( type="checkbox", checked )
+  else 
+    input.toggle( type="checkbox" )  
+  label #{title}
+  button.estroy
+
+input.edit(value="#{title}")

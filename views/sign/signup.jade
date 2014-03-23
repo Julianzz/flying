@@ -1,0 +1,53 @@
+extend ../layout
+
+block content
+
+  #content.container
+    .panel
+      .header
+        ul.breadcrumb
+          li  
+            a(href='/') 主页
+            span.divider /
+          li.active 注册
+
+      .inner
+        if locals.error
+          .alert.alert-error
+            a.close( data-dismiss="alert", href="#") &times;
+          strong  #{error}
+
+        if locals.success 
+          .alert.alert-success
+          strong #{success}
+        else
+          form#signup_form.form-horizontal( action='/signup',method='post' )
+            .control-group
+              label.control-label( for='name' ) 用户名
+              .controls
+                if locals.name 
+                  input.input-xlarge#name(name='name',size='30',type='text',value='#{name}')
+                else
+                  input.input-xlarge#name(name='name',size='30',type='text',value='')
+
+            .control-group
+              label.control-label(for='pass') 密码
+              .controls
+                input.input-xlarge#pass(name='pass',size='30',type='password')
+  
+            .control-group
+              label.control-label(for='re_pass') 确认密码
+              .controls
+                input.input-xlarge#re_pass(name='re_pass',size='30',type='password')
+
+            .control-group
+              label.control-label(for='email') 电子邮箱
+              .controls
+                if locals.email
+                  input.input-xlarge#email(name='email',size='30',type='text',value='#{email}')
+                else
+                  input.input-xlarge#email(name='email',size='30',type='text')
+            
+            input(type='hidden',name='_csrf',value='#{csrf}')
+            .form-actions
+              input.btn(type='submit',value='注册')

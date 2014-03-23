@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CodeCube</title>
+  <link rel="stylesheet" href="/stylesheets/app.css" />
+  <link rel="stylesheet" href="/base.css" />
+</head>
+
+<body spellcheck="false">
+  
+  <div id="toolbar">
+    <h1>codecube.io</h1>
+  </div>
+  <div id="editor"></div>
+  <div id="console">
+  	  <main id="wrapper"> </main>
+	  <section id="todoapp">
+	      <header id="header"></header>
+	      <section id="main"></section>
+	      <footer id="footer"></footer>
+	  </section>
+	  <footer id="info">
+	      <p>Double-click to edit a todo</p>
+	      <p>Created by <a href="http://paulmillr.com">Paul Miller</a></p>
+	      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+	  </footer>
+  </div>
+ 
+  <script src="lib/jquery.js"></script>
+  <script src="javascripts/vendor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="lib/ace/ace.js"></script>
+  <script src="javascripts/app.js"></script>
+  <script src="lib/socket.io.js" type="text/javascript" charset="utf-8"></script>
+
+  <script>require('initialize');</script>
+</body>
+</html>

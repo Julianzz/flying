@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CodeCube</title>
+  <link rel="stylesheet" href="/base.css" />
+</head>
+
+<body spellcheck="false">
+    
+  <script src="lib/jquery.js"></script>
+  <script src="javascripts/vendor.js" type="text/javascript" charset="utf-8"></script>
+  <script src="lib/ace/ace.js"></script>
+  <script src="javascripts/app.js"></script>
+  <script src="lib/socket.io.js" type="text/javascript" charset="utf-8"></script>
+  <script src="lib/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+
+  <script>require('initialize');</script>
+</body>
+</html>

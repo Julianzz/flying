@@ -1,0 +1,27 @@
+extend ../layout
+
+block content
+  .container
+    form#signin_form.form-horizontal( action='#{actionPath}', method='post')
+      input(type='hidden',name='_csrf',value='#{token}')
+      input(type='hidden',name='isnew',value='1')
+      div.control-group
+        .controls
+          button.btn.btn-info(type='submit') 注册新账号
+
+    form#signin_form.form-horizontal(action='#{actionPath}', method='post')
+      .control-group
+        label.controls 或者
+      .control-group
+        label.control-label(for='name') 用户名
+        .controls
+          input#name.input-xlarge(name='name',size='30',type='text')
+
+      .control-group
+        label.control-label(for='pass') 密码
+        .control
+          input#pass.input-xlarge(name='pass',size='30',type='password')
+
+      input(type='hidden',name='_csrf', value='#{csrf}')
+      .form-actions
+        input.btn(type='submit', value='关联旧账号')

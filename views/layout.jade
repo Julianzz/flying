@@ -1,0 +1,33 @@
+!!! 5
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge")
+    meta(name="description",content="")
+    meta(name="author",content="")
+    
+    block content-css
+      link(href='stylesheets/bootstrap.min.css', rel='stylesheet', media='screen')
+      link(href='stylesheets/app.css', rel='stylesheet', media='screen')
+
+  body(spellcheck=false)
+    
+    include nav
+         
+    block content
+
+    .container
+
+      block booter
+        #footer
+          p &copy; Company 2014
+
+
+    block javascript
+      script(src='lib/jquery.js')
+      script(src='lib/bootstrap.min.js')
+      script(src='javascripts/vendor.js')
+      
+

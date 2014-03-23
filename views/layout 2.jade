@@ -1,0 +1,64 @@
+!!! 5
+html
+  head
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    
+    block content-css
+      link(href='stylesheets/app.css', rel='stylesheet', media='screen')
+      link(href='stylesheets/bootstrap.min.css', rel='stylesheet', media='screen')
+      link(href='//fonts.googleapis.com/css?family=Cabin:400,700,400italic',rel='stylesheet',type='text/css')
+  body(spellcheck=false)
+    
+    
+    .navbar.navbar-default.navbar-static-top(role="navigation")
+      .container
+        a(href="#",title="Homepage")
+          .brand.logo
+            img(src='images/docker-top-logo.png')
+        ul.nav.navbar-nav.pull-right
+          li
+            a(href="http://docs.docker.io",title="Docker Documentation") Documentation
+          li
+            a(href="http://blog.docker.io",title="Blog") Blog
+          li
+            a(href="https://index.docker.io",title="Docker Image Index, find images here") INDEX 
+              img.inline-icon(src='images/external-link-icon.png',title="external link")
+    
+    block content 
+      
+      .container              
+        h1 Say something meaningful here.
+        p.lead Say something worthwhile here.
+        a(href="/") Go home
+        br
+        a(href="/ping") Ping
+        br
+        br
+        if (!user)
+          a(href="/login") Login
+          br
+          a(href="/register") Register
+        if (user)
+          p You are currently logged in as #{user.username}
+          a(href="/logout") Logout
+
+    .example
+      #layout
+        #header
+          h1Sticky Footer Example
+        p This is the main content area.
+
+        p In this example you should pretend that the red box is actually the browser window.
+ 
+        p Because, being a contrived example, it's not actually sticking to the bottom of the page.
+        
+        #layout_footer
+      #footer This is the footer area.
+
+    block javascript
+      script(src='lib/jquery.js')
+      script(src='javascripts/vendor.js')
+      script(src='lib/bootstrap.min.js')
+      
+

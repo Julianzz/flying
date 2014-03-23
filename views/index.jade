@@ -1,0 +1,51 @@
+extend ./layout
+
+block content 
+  .container           
+    .jumbotron
+      .container
+        .row
+          .col-md-8
+            h1 Jumbotron heading
+            p.lead Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, 
+              | tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+            p
+              a.btn.btn-lg.btn-success(href="#",role="button") Sign up today
+          .col-md-4
+
+            form.form-horizontal(role="form",action="/signup",method="post")
+              .form-group
+                .col-sm-10
+                  input#inputEmail3.form-control(type="email",name="username", placeholder="邮件地址")
+
+              .form-group
+                .col-sm-10
+                  input#inputPassword3.form-control(type="password", name="password", placeholder="创建密码" )
+
+              .form-group
+                .col-sm-10
+                  button.btn.btn-default.btn-block(type="submit") 注册
+                
+    .container
+      .row
+        .col-md-4
+          h2 Heading
+          p Donec id elit non mi porta gravida at eget metus. 
+            | Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+            |  ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+            | mollis euismod. Donec sed odio dui.
+
+        .col-md-4
+          h2 Heading 
+          p Donec id elit non mi porta gravida at eget metus. 
+            | Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, 
+            | ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna 
+            | mollis euismod. Donec sed odio dui. </p>
+
+        .col-md-4
+          h2 Heading
+          p Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
+             | egestas eget quam. Vestibulum id ligula porta felis euismod semper.
+             | Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+             | ut fermentum massa justo sit amet risus.
+  

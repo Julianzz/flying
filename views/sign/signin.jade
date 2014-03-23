@@ -1,0 +1,35 @@
+extend ../layout
+
+block content
+
+  #content.container
+    .panel
+      .header
+        ul.breadcrumb
+          li
+            a(href='/') 主页
+            span.divider
+          li.active 登录
+
+      .inner
+        if locals.error
+          .alert.alert-error
+            a.close(data-dismiss="alert",href="#") &times;
+            strong #{ error }
+
+        form#signin_form.form-horizontal(action='/signin',method='post')
+          .control-group
+            label.control-label(for='name') 用户名
+            .controls
+              input#name.input-xlarge( name='name', size='30',type='text')
+          .control-group
+            label.control-label(for='pass') 密码
+            .controls
+              input#pass.input-xlarge(name='pass',size='30',type='password')
+          input(type='hidden',name='_csrf',value='#{csrf}')
+          .form-actions
+            input.btn(type='submit',value='登录')
+            a.btn.btn-info(href="/auth/github") Sign in with Github
+          
+          .control-group
+            a(href='/search_pass') 忘记密码了?
