@@ -1,12 +1,10 @@
 
-CodeEditor = require "views/editor/CodeEditorView"
-ConsoleEditor = require "views/editor/ConsoleView"
 DialogView = require "views/dialog-view"
+WorkingShopView = require 'views/workshop'
 
-Todos = require 'models/todos'
 routes = require 'routes'
-
 mediator = require 'mediator'
+
 
 # The application object
 module.exports = class Application extends Chaplin.Application
@@ -16,8 +14,8 @@ module.exports = class Application extends Chaplin.Application
 
   initialize: (args...)->
     super args...
-    #editor = new CodeEditor()
-    #mconsole = new ConsoleEditor()
+
+    @workshop = new WorkingShopView()
     options = 
       message: "hello world"
       dialog: "alert"
@@ -30,13 +28,13 @@ module.exports = class Application extends Chaplin.Application
   # -------------------------------------
   initMediator: ->
     # Add additional application-specific properties and methods
-    mediator.todos = new Todos()
+    #mediator.todos = new Todos()
     # Seal the mediator
     super
 
   start: ->
     # If todos are fetched from server, we will need to wait for them.
-    mediator.todos.fetch()
+    # mediator.todos.fetch()
     super
 
 window.application = Application

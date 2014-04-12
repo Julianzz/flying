@@ -403,7 +403,8 @@ module.exports = class Terminal
                     cancel ev
             cancel ev
 
-        addEventListener "wheel", (ev) =>
+        $(@element).mousewheel (ev) =>
+        #addEventListener "wheel", (ev) =>
             if @mouseEvents
                 return if @x10Mouse
                 sendButton ev

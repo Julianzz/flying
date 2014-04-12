@@ -8,26 +8,31 @@ html
     meta(name="description",content="")
     meta(name="author",content="")
     
-    block content-css
+    block stylesheets
       link(href='stylesheets/bootstrap.min.css', rel='stylesheet', media='screen')
+      link(href='epiceditor/themes/base/epiceditor.css', rel='stylesheet', media='screen')
       link(href='stylesheets/app.css', rel='stylesheet', media='screen')
 
   body(spellcheck=false)
-    
+  
     include nav
          
     block content
 
-    .container
-
-      block booter
+    block booter
+      .container
         #footer
           p &copy; Company 2014
 
 
     block javascript
       script(src='lib/jquery.js')
+      script(src='lib/jquery-ui.js')
+      script(src='lib/jquery.mousewheel.js')
       script(src='lib/bootstrap.min.js')
+      script(src='lib/mousetrap.js')
+      script(src='lib/keymaster.js')
       script(src='javascripts/vendor.js')
+
       
 

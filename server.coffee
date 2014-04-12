@@ -23,8 +23,8 @@ createAndConfigureApp = ->
 
   app = express()
   
-  app.configure 'development', ->
-    edt = require('express-debug')(app, {})
+  #app.configure 'development', ->
+  #  edt = require('express-debug')(app, {})
   
   #app.conf = conf
   serverSetup.setExpressConfigurationOptions app

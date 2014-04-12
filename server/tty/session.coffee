@@ -107,7 +107,7 @@ module.exports = class Session
     term = pty.fork shell, shellArgs, 
       name: conf.termName
       cols: cols
-      rows: rows 
+      rows: rows
       cwd: conf.cwd || process.env.HOME
       env: env 
 

@@ -20,8 +20,9 @@ module.exports = class IndexController extends Chaplin.Controller
   list: (params) ->
     filterer = params.filterer?.trim() ? 'all'
     @publishEvent 'todos:filter', filterer
-    @view = new TodosView collection: mediator.todos, filterer: (model) ->
+    ###@view = new TodosView collection: mediator.todos, filterer: (model) ->
       switch filterer
         when 'completed' then model.get('completed')
         when 'active' then not model.get('completed')
         else true
+    ###

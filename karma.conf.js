@@ -21,6 +21,7 @@ module.exports = function(config) {
       "public/lib/ace/*.js",
       "public/javascripts/vendor.js",
       "public/javascripts/app.js",
+      "public/lib/sinon-1.9.1.js",
       "./specs/web/*.coffee",
       "./specs/web/*.js"
     ],

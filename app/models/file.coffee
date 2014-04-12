@@ -1,5 +1,6 @@
 Url = require "lib/url"
 Vfs = require "lib/vfs"
+Languages = require "lib/languages"
 
 module.exports = class File extends Chaplin.Model
   defaults: 
@@ -26,6 +27,8 @@ module.exports = class File extends Chaplin.Model
     @_loading = false
     @_uniqueId = Date.now() + _.uniqueId("file")
 
+    @read = @download
+    
     ###
     @on "file:change:delete", ->
       @destroy()
@@ -46,6 +49,8 @@ module.exports = class File extends Chaplin.Model
         @trigger "file:write", e.data 
     
     ###
+  syncEnvId: ->
+    return if @isNewFile() then "temporary://" + @_uniqueId else "file://" + @path()
 
   modifiedState: (state) ->
     return if @modified == state 
@@ -56,7 +61,7 @@ module.exports = class File extends Chaplin.Model
     return Vfs.execute method, args, {'url': url }
 
   isValid: ->
-    return @get("href", "").length > 0
+    return @get("href")?.length > 0
 
   vfsFullUrl: (args...) ->
     return @codinghub.baseUrl + @vfsUrl.apply(@, args)
@@ -126,6 +131,14 @@ module.exports = class File extends Chaplin.Model
   isHidden: ->
     return @get("name","").indexOf(".") == 0
 
+  isRoot: ->
+    return @path() == "/"
+
+  icon: ->
+    return "star"
+  canOpen: ->
+    return true
+
   paths: ->
     return _.map @path.split("/"), (name, i, parts) =>
       partialpath = parts.slice(0, i).join("/") +"/" +name
@@ -142,6 +155,7 @@ module.exports = class File extends Chaplin.Model
       return state
 
     return if @_loading == state 
+
     @_loading = state 
     @trigger "loading", @_loading
 
@@ -219,6 +233,11 @@ module.exports = class File extends Chaplin.Model
       , (err) =>
         Q.reject( new Error(err))
 
+  isNewfile: ->
+    return not @get("exists")
+
+  mode: (file) ->
+    return Languages.get_mode_byextension(@extension())
 
   getChildVfsPath: (filename, is_file ) ->
     path = @vfsUrl(null, true ) 
@@ -226,6 +245,13 @@ module.exports = class File extends Chaplin.Model
     if not is_file
       path = path + "/"
     return path 
+
+  open: (path, options) ->
+    files = require "../core/files"
+    if _.isObject(path)
+      options = path
+      path = @
+    return files.open( path, options )
 
   createFile: (name) ->
     return @loading @vfsRequest('create', @getChildVfsPath(name, true )) 
@@ -250,5 +276,23 @@ module.exports = class File extends Chaplin.Model
     newName = newName or from.split("/").pop()
     toPath = @path() + "/" + newName
     return @loading( @vfsRequest( "special", @vfsUrl(toPath, false ), { "copyFrom": from }))
+
+  download: (filename , options ) ->
+    url = null
+    d = null
+    if _.isObject( filename )
+      options = filename 
+      filename = null 
+
+    return Q( @newFileContent )  if @isNewFile() and not filename 
+
+    options = _.defaults options or {}, 
+      redirect: false
+
+    if options.redirect
+      window.open( @exportUrl(), "_blank") 
+    else 
+      @loading( @vfsRequest( "read", @vfsUrl(filename, false )) ).then (content)  =>
+        return content 
 
   

@@ -39,7 +39,13 @@ setupExpressMiddleware = (app) ->
   app.use(express.cookieParser(config.cookie_secret))
   app.use(express.session( { secret: config.session_secret }))
   
-  app.use(express.bodyParser())
+  # file access module should not use  body parser
+  app.use (req, rep, next ) ->
+    bodyParser = express.bodyParser()
+    #console.log req.path 
+    return next() if /^(\/files)(\/.*)$/.test( req.path )
+    return bodyParser(req, rep, next )
+
   app.use(express.methodOverride())
 
   #app.use(express.cookieSession({secret:'defenestrate'}))

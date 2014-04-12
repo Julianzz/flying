@@ -1,37 +1,31 @@
 @import "compass/reset"
-@import "compass/reset.scss"
-@import "compass/layout.scss"
- 
-@include sticky-footer(72px, "#layout", "#layout_footer", "#footer")
- 
-#header
-  background: #999999
-  height: 72px
- 
-#footer
-  background: #cccccc
  
 .example 
   height: 500px
   border: 3px solid red
   p 
-    margin: 1em 0.5em
+    margin: 1em 0.5e
 
-#editor 
-  position: absolute
-  top: 44px
+#editor
+  position: absolute 
+  top: 51px
   right: 50%
   bottom: 0
   left: 0
-  background: #000
 
+.common_editor 
+  position: absolute !important
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
 
 .ace_gutter 
   background: #222 !important
 
 #console
   position: absolute
-  top: 44px
+  top: 51px
   left: 50%
   bottom: 0
   right: 0

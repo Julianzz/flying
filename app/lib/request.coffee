@@ -77,7 +77,6 @@ module.exports = class Requests
     params = 
       method: "POST"
       params: args
-    console.log url, params, options 
     return @_execute url, options, params
 
 

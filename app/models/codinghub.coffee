@@ -25,3 +25,18 @@ module.exports = class CodingHub extends Chaplin.Model
 
 		@activeFile = "/"
 
+		@socket = io.connect()
+
+
+	setActiveFile: (path) ->
+		if not _.isString(path)
+			if path.isNewFile()
+				path = null
+			else 
+				path = path.path()
+		return if @activeFile == path
+
+		@activeFile = path
+		@trigger "file:active", @activeFile
+
+		return @

@@ -1,0 +1,27 @@
+each field, key in fields
+    - var field_name = namespace+"_"+key
+    - var field_selector = "settings."+namespace+"."+key
+    - var field_value = session.user.get(field_selector, defaults[key] || field.default)
+
+    .form-group
+    label.col-lg-3.control-label(for=field_name)= field.label 
+    .col-lg-9
+        case field.type
+            when "text"
+                input.form-control(type="text",name=field_name,value=field_value) 
+            when "password"
+                input.form-control(type="password",name=field_name,value=field_value)
+            when "number"
+                input.form-control(type="number",name=field_name,step=field.step || 1 ,min=field.min || 0 , max=field.max || 10  value=field_value)
+            when "checkbox"
+                input(type="checkbox".name=field_name, checked=field_value?true:false)
+            when "action"
+                button.btn.btn-default(data-settings-action= key)= field.content
+            when "textarea"
+                textarea.form-control(name=field_name, rows=field.rows || 3 )= field_value
+            when "select"
+                select.form-control(name=field_name)
+                each opname, opkey in field.options
+                    option(value=opkey, selected=field_value == opkey? true:false) opname
+        if field.help
+            p.help-block = field.help

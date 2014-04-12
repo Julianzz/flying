@@ -7,34 +7,34 @@ File = require "models/file"
 $ = document.querySelectorAll.bind(document)
 
 module.exports = ->
-  socket = io.connect()
+  #socket = io.connect()
   
-  id = null
+  #id = null
 
   #data = Request.get( "/files/").then (data) ->
   #  console.log data
   
-  file  = new File()
-  file.getByPath("/auth").then ->
-    ###file.listdir().then (data) ->
+  #file  = new File()
+  ###file.getByPath("/auth").then ->
+    file.listdir().then (data) ->
         _.each data, (elm) ->
           console.log elm.get('name')
       , (err) ->
         console.log "error", err
-    ###
+  ###
     #file.createFile("zhong")
-    file.mkdir('liu').then ->
-        console.log "success build file "
-      , (error) ->
-        console.log "fail", error 
+  #  file.mkdir('liu').then ->
+  #      console.log "success build file "
+  #    , (error) ->
+  #      console.log "fail", error 
 
-  send = (data) ->
-    socket.emit "data",id, data
+  #send = (data) ->
+  #  socket.emit "data",id, data
   
-  ctl = (type, args...) ->
-    params = args.join(',')
-    if type == 'Resize'
-      socket.emit "resize" , params
+  #ctl = (type, args...) ->
+  #  params = args.join(',')
+  #  if type == 'Resize'
+  #    socket.emit "resize" , params
      
   ###term = new Terminal $('#wrapper')[0], send, ctl
     
@@ -49,7 +49,7 @@ module.exports = ->
       , 1
   ###
   addEventListener 'beforeunload', ->
-    if not quit
+    if quit? and quit
       'This will exit the terminal session'
   
   

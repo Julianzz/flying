@@ -26,10 +26,11 @@ errorHandler = (req, res, err, code) ->
   res.end(message)
 
 module.exports.setup = (app) ->
-  app.all /^(\/files(\/.*))$/, (req, res) ->
+  app.all /^(\/files)(\/.*)$/, (req, res) ->
     
     path = unescape(req.params[1])
     base_path = unescape(req.params[0])
+    #console.log base_path, path ,req.params
     #Instead of using next for errors, we send a custom response here.
     abort = (err, code) ->
       return errorHandler(req, res, err, code)
@@ -82,6 +83,7 @@ module.exports.setup = (app) ->
           mount = base_path
           if options.encoding is null
             host_header = if req.socket.encrypted then "https://" else "http://" 
+            console.log mount , path 
             base = req.restBase or host_header + req.headers.host + pathJoin(mount, path);
             encoder.jsonEncoder(meta.stream, base).pipe(res)
           else
@@ -110,6 +112,7 @@ module.exports.setup = (app) ->
           res.end()
       else
         vfs.mkfile path, { stream: req }, (err, meta) ->
+          console.log err, meta 
           return abort(err) if err
           res.end()
     
