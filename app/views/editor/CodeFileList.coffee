@@ -87,7 +87,7 @@ module.exports = class FileTreeView extends FileBaseView
 		@paddingLeft = @options.paddingLeft or 10 
 		#panelSettings.user.change =>
 		@update().then =>
-			console.log "append", @$el, @$el.html()
+			#console.log "append", @$el, @$el.html()
 
 	render: ->
 		@$el.toggleClass "root", @model.isRoot()

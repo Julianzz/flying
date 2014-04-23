@@ -12,6 +12,7 @@ module.exports = class View extends Chaplin.View
     @cid = _.uniqueId("backbone.shortcuts")
 
     super 
+
     @initialize.apply(@, arguments)
 
     _.extend @, Backbone.Events
@@ -28,7 +29,7 @@ module.exports = class View extends Chaplin.View
   dispose: ->
     super
     #remove listening
-    @stopListening()
+    #@stopListening()
 
 
   delegateShortcuts: ->
@@ -50,7 +51,7 @@ module.exports = class View extends Chaplin.View
       navs[key] = =>
         if not _.isFunction(method) 
           method = container[method]
-        console.log "method: apply:" , method 
+        #console.log "method: apply:" , method 
         method.apply( container, arguments)
 
     Keyboard.binds(navs,null, @ )
@@ -60,7 +61,7 @@ module.exports = class View extends Chaplin.View
 
   finish: ->
     #console.log "inside upper finish"
-    @trigger( "render")
+    @trigger( "view:render_finish")
     return @
 
   refresh: ->
@@ -86,7 +87,7 @@ module.exports = class View extends Chaplin.View
     return @renderQueue.defer(render)
 
   render: ->
-    super 
+    super
     @ready()
 
   defer: (cb) ->
@@ -119,12 +120,12 @@ module.exports = class View extends Chaplin.View
       return @
     n_components = 0
     
-    componentRendered = =>
-      n_components = n_components + 1
-      if n_components >= @countComponents
-        @ready()
+  componentRendered = =>
+    n_components = n_components + 1
+    if n_components >= @countComponents
+      @ready()
 
-    addComponent = (component) =>
+  addComponent = (component) =>
     @$("component[data-component= #{component.cid} ]").replaceWith(component.$el)
     component.defer(_.once(componentRendered))
     promise = Q.try ->

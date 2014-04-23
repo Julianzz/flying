@@ -36,7 +36,7 @@ module.exports.setup = (app) ->
       return errorHandler(req, res, err, code)
   
     vfs = Vfs
-      root: process.cwd() + "/specs/"
+      root: process.cwd() + "/tmp/"
     
     fileGet = (path,req,res) ->
 
@@ -83,7 +83,6 @@ module.exports.setup = (app) ->
           mount = base_path
           if options.encoding is null
             host_header = if req.socket.encrypted then "https://" else "http://" 
-            console.log mount , path 
             base = req.restBase or host_header + req.headers.host + pathJoin(mount, path);
             encoder.jsonEncoder(meta.stream, base).pipe(res)
           else

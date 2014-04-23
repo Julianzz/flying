@@ -51,7 +51,7 @@ setupExpressMiddleware = (app) ->
   #app.use(express.cookieSession({secret:'defenestrate'}))
 
   app.use(require('./server/auth/sign').auth_user)
-  ###app.use (req, res, next) ->
+  app.use (req, res, next) ->
     csrf = express.csrf()
     #ignore upload image
     return next() if req.body? and req.body.user_action == 'upload_image'
@@ -60,7 +60,7 @@ setupExpressMiddleware = (app) ->
   app.use (req, res, next) ->
     res.locals.csrf = req.csrfToken()
     next()
-  ###
+
   #app.set('view cache', true)
 
 setupPassportMiddleware = (app) ->

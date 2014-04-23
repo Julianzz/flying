@@ -1,10 +1,8 @@
 
 DialogView = require "views/dialog-view"
-WorkingShopView = require 'views/workshop'
+WorkingShopView = require 'views/editor/Workspace'
 
 routes = require 'routes'
-mediator = require 'mediator'
-
 
 # The application object
 module.exports = class Application extends Chaplin.Application

@@ -70,7 +70,6 @@ module.exports = class CodeEditor extends FileBaseView
 
     handleKeyEvent = (e) ->
       return if not e.altKey and not e.ctrlKey and e.metaKey
-      console.log "inside editor handle event ", e
       keyboard.handleKeyEvent(e)
 
     $input.addEventListener('keypress', handleKeyEvent, false);
@@ -176,7 +175,6 @@ module.exports = class CodeEditor extends FileBaseView
       language: @lang
 
   saveFile: (e) ->
-    console.log "inside save "
     e.preventDefault() if e 
     @sync.save()
 

@@ -4,6 +4,8 @@ ConsoleEditor = require "views/editor/ConsoleView"
 CodeFileList = require "views/editor/CodeFileList"
 MarkdownView = require "views/editor/MarkdownView"
 
+FileManagerView = require "views/editor/FileManagerView"
+
 files = require "core/files"
 
 FileEditorView = require "views/editor/CodeEditorView"
@@ -81,8 +83,9 @@ module.exports = class WorkingShopView extends View
 				@current_file = null 
 
 				@console = new ConsoleEditor()
-				@filelist = new CodeFileList( { path:"/"})
-
+				#@filelist = new CodeFileList( { path:"/"})
+				@filelist = new FileManagerView()
+				
 				listDom = @main_container.find(".ch-file-lists")
 				listDom.append( @filelist.$el )
 
@@ -93,8 +96,12 @@ module.exports = class WorkingShopView extends View
 
 				@markdown = new MarkdownView()
 
+				markdownview = @main_container.find("#epiceditor-preview")
+				markdownview.append(@markdown.$el)
+
 	refresh: ->
 		$("body").trigger("resize")
+		
 		@console.refresh()
 		@markdown.refresh()
 		@filelist.refresh() 

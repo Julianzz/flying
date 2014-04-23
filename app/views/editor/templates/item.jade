@@ -2,12 +2,9 @@
 span.name
 	- var file_icon = file.icon()
 	if file.isDirectory()
-		i.fa.fa-angle-right
-		i.fa.fa-angle-down
-		i.fa.file-icon(class="fa-#{ file_icon }" )
+		i.glyphicon.glyphicon-folder-open(class="fa-#{ file_icon }" )
 	else
-		i.fa.fa-angle-right.invisible
-		i.fa.file-icon(class="fa-#{ file_icon }" )
+		i.glyphicon.glyphicon-file(class="fa-#{ file_icon }" )
 	= file.get("name")
 if file.isDirectory()
 	.files

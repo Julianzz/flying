@@ -99,6 +99,7 @@ class ListView  extends View
             item = @items[model.id] 
             if not item 
                 console.log " sort with no exist items "
+                return 
             item.$el.appendTo( @$el )
         return @
 

@@ -3,9 +3,10 @@ extend ./layout
 block content
   #ch-main-working
     #ch-tutorial.ui-layout-west
-      #epiceditor
+      #epiceditor-preview
         
-    .ch-codeeditor.ui-layout-center
+    .ui-layout-center
+      .ch-codeeditor-body
       
     .ui-layout-east
       .ch-file-lists
@@ -22,5 +23,12 @@ block append javascript
   script(src="epiceditor/js/epiceditor.js")
   script(src="lib/jquery.layout-latest.min.js") 
   script(src='javascripts/app.js')
+  script(src="lib/marked.js")
   script
     require('initialize')
+    var csrf = "#{ csrf }"
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-Token': csrf
+        }
+    });

@@ -136,6 +136,7 @@ module.exports = class File extends Chaplin.Model
 
   icon: ->
     return "star"
+    
   canOpen: ->
     return true
 
